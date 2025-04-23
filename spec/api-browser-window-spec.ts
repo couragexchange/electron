@@ -6639,6 +6639,12 @@ describe('BrowserWindow module', () => {
     ifit(nativeModulesEnabled && ['win32'].includes(process.platform))('use shared texture, hardware acceleration enabled', (done) => {
       const { ExtractPixels, InitializeGpu } = require('@electron-ci/osr-gpu');
 
+      if (app._isHardwareAccelerationDisabled()) {
+        console.log('Hardware acceleration is disabled, this spec needs hardware acceleration. Skipping...');
+        done();
+        return;
+      }
+
       try {
         InitializeGpu();
       } catch (e) {
