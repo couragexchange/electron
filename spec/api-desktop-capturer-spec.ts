@@ -119,6 +119,7 @@ ifdescribe(!process.arch.includes('arm') && process.platform !== 'win32')('deskt
     // bots while it is not on my workstation, as expected, with and without
     // the --ci parameter.
     if (process.platform === 'linux' && sources.length === 0) {
+      // eslint-disable-next-line mocha/no-nested-tests
       it.skip('desktopCapturer.getSources returned an empty source list');
       return;
     }
@@ -155,6 +156,7 @@ ifdescribe(!process.arch.includes('arm') && process.platform !== 'win32')('deskt
     // bots while it is not on my workstation, as expected, with and without
     // the --ci parameter.
     if (process.platform === 'linux' && sources.length === 0) {
+      // eslint-disable-next-line mocha/no-nested-tests
       it.skip('desktopCapturer.getSources returned an empty source list');
       return;
     }
@@ -225,6 +227,7 @@ ifdescribe(!process.arch.includes('arm') && process.platform !== 'win32')('deskt
       // the --ci parameter.
       if (process.platform === 'linux' && sources.length === 0) {
         destroyWindows();
+        // eslint-disable-next-line mocha/no-nested-tests
         it.skip('desktopCapturer.getSources returned an empty source list');
         return;
       }
