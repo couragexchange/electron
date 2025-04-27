@@ -189,11 +189,12 @@ jobs:
     - name: Run Electron Tests
       shell: bash
       env:
-        MOCHA_REPORTER: mocha-multi-reporters
-        MOCHA_MULTI_REPORTERS: mocha-junit-reporter, tap
-        ELECTRON_DISABLE_SECURITY_WARNINGS: 1
-        ELECTRON_SKIP_NATIVE_MODULE_TESTS: true
         DISPLAY: ':99.0'
+        ELECTRON_DISABLE_SECURITY_WARNINGS: 1
+        ELECTRON_ENABLE_LOGGING: 1
+        ELECTRON_SKIP_NATIVE_MODULE_TESTS: true
+        MOCHA_MULTI_REPORTERS: mocha-junit-reporter, tap
+        MOCHA_REPORTER: mocha-multi-reporters
         NPM_CONFIG_MSVS_VERSION: '2022'
       run: |
         cd src/electron
