@@ -938,11 +938,17 @@ v8::Local<v8::Value> BaseWindow::GetTabbingIdentifier() {
 }
 
 void BaseWindow::SetAutoHideMenuBar(bool auto_hide) {
+  LOG(INFO) << "BaseWindow::SetAutoHideMenuBar(" << auto_hide
+            << ") is delegating to its native window...";
   window_->SetAutoHideMenuBar(auto_hide);
 }
 
 bool BaseWindow::IsMenuBarAutoHide() const {
-  return window_->IsMenuBarAutoHide();
+  LOG(INFO) << " BaseWindow::IsMenuBarAutoHide() is delegating to its native "
+               "window...";
+  const bool val = window_->IsMenuBarAutoHide();
+  LOG(INFO) << " BaseWindow::IsMenuBarAutoHide() returning " << val;
+  return val;
 }
 
 void BaseWindow::SetMenuBarVisibility(bool visible) {

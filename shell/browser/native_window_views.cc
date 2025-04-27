@@ -197,12 +197,14 @@ class NativeWindowClientView : public views::ClientView {
 
 NativeWindowViews::NativeWindowViews(const gin_helper::Dictionary& options,
                                      NativeWindow* parent)
-    : NativeWindow(options, parent) {
+    : NativeWindow{options, parent} {
   options.Get(options::kTitle, &title_);
 
-  bool menu_bar_autohide;
-  if (options.Get(options::kAutoHideMenuBar, &menu_bar_autohide))
-    root_view_.SetAutoHideMenuBar(menu_bar_autohide);
+  if (bool val; options.Get(options::kAutoHideMenuBar, &val)) {
+    LOG(INFO) << "NativeWindowViews this " << this
+              << " ctor calling SetAutoHideMenuBar(" << val << ')';
+    SetAutoHideMenuBar(val);
+  }
 
 #if BUILDFLAG(IS_WIN)
   // On Windows we rely on the CanResize() to indicate whether window can be
@@ -1457,11 +1459,16 @@ void NativeWindowViews::SetOverlayIcon(const gfx::Image& overlay,
 }
 
 void NativeWindowViews::SetAutoHideMenuBar(bool auto_hide) {
+  LOG(INFO) << "NativeWindowViews this " << this
+            << " calling root_view_.SetAutoHideMenuBar(" << auto_hide << ')';
   root_view_.SetAutoHideMenuBar(auto_hide);
 }
 
 bool NativeWindowViews::IsMenuBarAutoHide() const {
-  return root_view_.is_menu_bar_auto_hide();
+  const bool val = root_view_.is_menu_bar_auto_hide();
+  LOG(INFO) << "NativeWindowViews this " << this
+            << " just called root_view_.is_menu_bar_auto_hide(); got " << val;
+  return val;
 }
 
 void NativeWindowViews::SetMenuBarVisibility(bool visible) {

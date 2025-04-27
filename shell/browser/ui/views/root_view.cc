@@ -82,6 +82,14 @@ int RootView::GetMenuBarHeight() const {
 
 void RootView::SetAutoHideMenuBar(bool auto_hide) {
   menu_bar_autohide_ = auto_hide;
+  LOG(INFO) << "setting this " << this << " menu_bar_autohide_ "
+            << menu_bar_autohide_;
+}
+
+bool RootView::is_menu_bar_auto_hide() const {
+  LOG(INFO) << "getting this " << this << " menu_bar_autohide_ "
+            << menu_bar_autohide_;
+  return menu_bar_autohide_;
 }
 
 void RootView::SetMenuBarVisibility(bool visible) {

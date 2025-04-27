@@ -479,6 +479,7 @@ void NativeWindow::SetEscapeTouchBarItem(
     gin_helper::PersistentDictionary item) {}
 
 bool NativeWindow::IsMenuBarAutoHide() const {
+  LOG(INFO) << "NativeWindow::IsMenuBarAutoHide() is hardcoded to return false";
   return false;
 }
 
